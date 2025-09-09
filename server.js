@@ -1,4 +1,5 @@
 
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -14,7 +15,8 @@ mongoose
   .catch(err => console.error('Mongo connection error', err));
 
 const app = express();
-app.use(cors());
+// restrict CORS to the hosted frontend (GitHub Pages)
+app.use(cors({ origin: 'https://mgurunikhil.github.io' }));
 app.use(bodyParser.json());
 
 // mount routes
